@@ -23,7 +23,12 @@ function QuestionBox({
     <div>
       <Title>{question.title}</Title>
       <Desc>{question.desc}</Desc>
-      <Body type={question.type} answers={answers} setAnswers={setAnswers} />
+      <Body
+        type={question.type}
+        answers={answers}
+        setAnswers={setAnswers}
+        options={question.option}
+      />
       <ActionButton questionsLength={questionsLength} step={step} />
     </div>
   );

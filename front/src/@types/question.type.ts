@@ -3,5 +3,8 @@ export type Question = {
   desc: string;
   type: string;
   required: boolean;
-  option?: null;
+  option: {
+    placeholder: string;
+    item?: string[];
+  };
 };

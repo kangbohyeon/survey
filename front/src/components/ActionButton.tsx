@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Button from './Button';
 
 type ActionButtonProps = {
   questionsLength: number;
@@ -12,30 +13,33 @@ function ActionButton({ questionsLength, step }: ActionButtonProps) {
   return (
     <div>
       {isFirst || (
-        <button
-          onClick={() => {
+        <Button
+          type='SECONDARY'
+          onChange={() => {
             navigate(`${step - 1}`);
           }}
         >
           이전
-        </button>
+        </Button>
       )}
       {isLast ? (
-        <button
-          onClick={() => {
+        <Button
+          type='PRIMARY'
+          onChange={() => {
             navigate('/done');
           }}
         >
           제출
-        </button>
+        </Button>
       ) : (
-        <button
-          onClick={() => {
+        <Button
+          type='PRIMARY'
+          onChange={() => {
             navigate(`${step + 1}`);
           }}
         >
           다음
-        </button>
+        </Button>
       )}
     </div>
   );

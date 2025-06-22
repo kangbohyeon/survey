@@ -55,3 +55,31 @@
     font-weight: bold;
   }
 }
+
+.button {
+  padding: 16px 24px;
+  width: 200px;
+
+  color: var(--color);
+  background: var(--background);
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  border: var(--border);
+
+  &:hover {
+    color: var(--hover_color);
+    background: var(--hover_background);
+    border: var(--hover_border);
+  }
+  &:active {
+    color: var(--active_color);
+    background: var(--active_background);
+    border: var(--active_border);
+  }
+  &:disabled {
+    color: var(--disabled_color);
+    background: var(--disabled_background);
+    border: var(--disabled_border);
+  }
+}

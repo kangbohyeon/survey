@@ -6,6 +6,7 @@ import { Question } from '../@types/question.type';
 import ProgressIndicator from '../components/ProgressIndicator';
 import QuestionBox from '../components/QuestionBox';
 
+import styles from '../assets/css/SurveyPage.module.css';
 function SurveyPage() {
   const questions: Question[] = [
     {
@@ -42,7 +43,7 @@ function SurveyPage() {
   const step = parseInt(params.step as string);
   const [answers, setAnswers] = useState<string[]>([]);
   return (
-    <div>
+    <div className={`${styles.surveyPageWrapper}`}>
       <ProgressIndicator />
       <QuestionBox
         question={questions[step]}

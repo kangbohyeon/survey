@@ -2,6 +2,7 @@ import SelectInput from './SelectInput';
 import TextAreaInput from './TextAreaInput';
 import TextInput from './TextInput';
 
+import styles from '../assets/css/SurveyPage.module.css';
 type BodyProps = {
   type: string;
   answers: string[];
@@ -20,7 +21,7 @@ function Body({ type, answers, setAnswers, options }: BodyProps) {
   }
 
   return (
-    <>
+    <div className={`${styles.bodyWrapper}`}>
       {InputComponent && (
         <InputComponent
           answers={answers}
@@ -28,7 +29,7 @@ function Body({ type, answers, setAnswers, options }: BodyProps) {
           options={options}
         />
       )}
-    </>
+    </div>
   );
 }
 

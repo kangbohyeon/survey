@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 
+import styles from '../assets/css/SurveyPage.module.css';
+
 type ActionButtonProps = {
   questionsLength: number;
   step: number;
@@ -11,7 +13,7 @@ function ActionButton({ questionsLength, step }: ActionButtonProps) {
   const isFirst: boolean = step === 0;
   const isLast: boolean = questionsLength - 1 === step;
   return (
-    <div>
+    <div className={`${styles.actionButtonWrapper}`}>
       {isFirst || (
         <Button
           type='SECONDARY'

@@ -4,6 +4,8 @@ import Body from './Body';
 import Desc from './Desc';
 import Title from './Title';
 
+import styles from '../assets/css/SurveyPage.module.css';
+
 type QuestionBoxProps = {
   question: Question;
   questionsLength: number;
@@ -20,7 +22,7 @@ function QuestionBox({
   setAnswers,
 }: QuestionBoxProps) {
   return (
-    <div>
+    <div className={`${styles.questionBoxWrapper}`}>
       <Title>{question.title}</Title>
       <Desc>{question.desc}</Desc>
       <Body

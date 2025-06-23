@@ -1,0 +1,130 @@
+.input {
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 12px 18px;
+}
+
+.textarea {
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 12px 18px;
+  height: 196px;
+  resize: none;
+}
+
+.selectInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.itemWrapper {
+  input[type='checkbox'] {
+    display: none;
+  }
+  input[type='checkbox'] ~ span {
+    width: 24px;
+    height: 24px;
+    border: 3px solid #e2dfdf;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 100%;
+    margin-right: 10px;
+  }
+  input[type='checkbox']:checked ~ span {
+    border: 8px solid #6542f1;
+  }
+
+  input[type='checkbox'] ~ div {
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  input[type='checkbox']:checked ~ div {
+    font-weight: bold;
+  }
+}
+
+.button {
+  padding: 16px 24px;
+  width: 200px;
+
+  color: var(--color);
+  background: var(--background);
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  border: var(--border);
+
+  &:hover {
+    color: var(--hover_color);
+    background: var(--hover_background);
+    border: var(--hover_border);
+  }
+  &:active {
+    color: var(--active_color);
+    background: var(--active_background);
+    border: var(--active_border);
+  }
+  &:disabled {
+    color: var(--disabled_color);
+    background: var(--disabled_background);
+    border: var(--disabled_border);
+  }
+}
+
+.titleWrapper {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #121111;
+  margin: 0;
+
+  span {
+    margin-right: 12px;
+  }
+}
+
+.descWrapper {
+  font-size: 18px;
+  line-height: 21px;
+  color: #463c3c;
+  font-weight: normal;
+  margin-top: 16px;
+  margin-bottom: 60px;
+  margin-left: 38px;
+}
+
+.bodyWrapper {
+  margin: 0 38px;
+  flex: 1;
+}
+
+.actionButtonWrapper {
+  margin-top: 72px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.questionBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.surveyPageWrapper {
+  width: 100%;
+  min-height: 100%;
+}

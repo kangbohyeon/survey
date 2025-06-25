@@ -1,7 +1,7 @@
 import styles from '../assets/css/SurveyPage.module.css';
 type TextInputProps = {
-  answers: string[];
-  setAnswers: (newAnswer: string) => void;
+  answers: number | string | string[];
+  setAnswers: (newAnswer: number | string | string[]) => void;
   options: { placeholder: string; item?: string[] | undefined };
 };
 

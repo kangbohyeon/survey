@@ -5,7 +5,7 @@ import TextInput from './TextInput';
 import styles from '../assets/css/SurveyPage.module.css';
 type BodyProps = {
   type: string;
-  answers: string[];
+  answers: string[] | string;
   setAnswers: (newAnswer: string) => void;
   options: { placeholder: string; item?: string[] | undefined };
 };

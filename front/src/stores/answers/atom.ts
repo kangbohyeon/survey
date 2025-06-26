@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-const answersState = atom<[]>({
+const answersState = atom<string[]>({
   key: 'answersState',
   default: [],
 });

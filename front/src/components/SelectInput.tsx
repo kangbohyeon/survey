@@ -1,10 +1,11 @@
 import styles from '../assets/css/SurveyPage.module.css';
 
 type SelectInputProps = {
-  answers: number | string | string[];
-  setAnswers: (newAnswer: number | string | string[]) => void;
-  options: { placeholder: string; item?: string[] | undefined };
+  answer: number[];
+  setAnswer: (newAnswers: number[]) => void;
+  options: { placeholder: string; item?: string[] };
 };
+
 type ItemProps = {
   children: React.ReactNode;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,15 +23,15 @@ function Item({ children, onChange }: ItemProps) {
   );
 }
 
-function SelectInput({ answers = [], setAnswers, options }: SelectInputProps) {
+function SelectInput({ answer = [], setAnswer, options }: SelectInputProps) {
   const handleChange = (isChecked: boolean, index: number) => {
     console.log(
-      `answers : ${answers}, isChecked : ${isChecked}, index : ${index}`
+      `answers : ${answer}, isChecked : ${isChecked}, index : ${index}`
     );
     if (isChecked) {
-      setAnswers([...answers, index]);
+      setAnswer([...answer, index]);
     } else {
-      setAnswers(answers.filter((item) => item !== index));
+      setAnswer(answer.filter((item) => item !== index));
     }
   };
   return (

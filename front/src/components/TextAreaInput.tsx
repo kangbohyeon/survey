@@ -1,16 +1,17 @@
 import styles from '../assets/css/SurveyPage.module.css';
 
 type TextAreaInputProps = {
-  answers: number | string | string[];
-  setAnswers: (newAnswer: number | string | string[]) => void;
-  options: { placeholder: string; item?: string[] | undefined };
+  answer: string;
+  setAnswer: (newAnswer: string) => void;
+  options: { placeholder: string; item?: string[] };
 };
-function TextAreaInput({ answers, setAnswers, options }: TextAreaInputProps) {
+
+function TextAreaInput({ answer, setAnswer, options }: TextAreaInputProps) {
   return (
     <textarea
       className={`${styles.textarea}`}
-      value={answers}
-      onChange={(e) => setAnswers(e.target.value)}
+      value={answer}
+      onChange={(e) => setAnswer(e.target.value)}
       placeholder={options.placeholder}
     />
   );

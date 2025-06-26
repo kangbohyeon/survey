@@ -1,18 +1,18 @@
 import styles from '../assets/css/SurveyPage.module.css';
 type TextInputProps = {
-  answers: number | string | string[];
-  setAnswers: (newAnswer: number | string | string[]) => void;
-  options: { placeholder: string; item?: string[] | undefined };
+  answer: string;
+  setAnswer: (newAnswer: string) => void;
+  options: { placeholder: string; item?: string[] };
 };
 
-function TextInput({ answers, setAnswers, options }: TextInputProps) {
+function TextInput({ answer, setAnswer, options }: TextInputProps) {
   return (
     <input
       className={`${styles.input}`}
       type='text'
-      value={answers}
+      value={answer}
       onChange={(e) => {
-        setAnswers(e.target.value);
+        setAnswer(e.target.value);
       }}
       placeholder={options.placeholder}
     />

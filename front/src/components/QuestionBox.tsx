@@ -1,4 +1,6 @@
-import { Question } from '../@types/question.type';
+import useCurrentQuestion from '../hooks/useCurrentQuestion';
+import useCurrentAnswer from '../hooks/useCurrentAnswer';
+
 import ActionButton from './ActionButton';
 import Body from './Body';
 import Desc from './Desc';
@@ -6,32 +8,21 @@ import Title from './Title';
 
 import styles from '../assets/css/SurveyPage.module.css';
 
-type QuestionBoxProps = {
-  question: Question;
-  questionsLength: number;
-  step: number;
-  answers: string[];
-  setAnswers: (newAnswer: string) => void;
-};
+function QuestionBox() {
+  const question = useCurrentQuestion();
+  const [answer, setAnswer] = useCurrentAnswer();
 
-function QuestionBox({
-  question,
-  questionsLength,
-  step,
-  answers,
-  setAnswers,
-}: QuestionBoxProps) {
   return (
     <div className={`${styles.questionBoxWrapper}`}>
       <Title>{question.title}</Title>
       <Desc>{question.desc}</Desc>
       <Body
         type={question.type}
-        answers={answers}
-        setAnswers={setAnswers}
+        answer={answer}
+        setAnswer={setAnswer}
         options={question.option}
       />
-      <ActionButton questionsLength={questionsLength} step={step} />
+      <ActionButton />
     </div>
   );
 }

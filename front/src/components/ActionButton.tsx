@@ -1,15 +1,18 @@
+import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+
+import questionsLengthState from '../stores/questions/questionsLengthState';
+import useStep from '../hooks/useStep';
+
 import Button from './Button';
 
 import styles from '../assets/css/SurveyPage.module.css';
 
-type ActionButtonProps = {
-  questionsLength: number;
-  step: number;
-};
-
-function ActionButton({ questionsLength, step }: ActionButtonProps) {
+function ActionButton() {
+  const step = useStep();
+  const questionsLength = useRecoilValue(questionsLengthState);
   const navigate = useNavigate();
+
   const isFirst: boolean = step === 0;
   const isLast: boolean = questionsLength - 1 === step;
   return (

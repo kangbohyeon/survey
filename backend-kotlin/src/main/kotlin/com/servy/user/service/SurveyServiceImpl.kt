@@ -1,16 +1,20 @@
 package com.servy.user.service
 
 import com.servy.user.DTO.PageVo
+import com.servy.user.DTO.Questions
 import com.servy.user.DTO.SurveyListResponseVo
 import com.servy.user.DTO.SurveyResponseVo
 import com.servy.user.repository.SurveyRepository
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class SurveyServiceImpl(
     private val surveyRepository: SurveyRepository
 ) : SurveyService {
+
+    @Transactional(readOnly = true)
     override fun getSurveys(pageable: Pageable): SurveyListResponseVo {
 
         val surveys = surveyRepository.findAll(pageable)
@@ -24,7 +28,17 @@ class SurveyServiceImpl(
         )
 
         val surveyResponseVos =
-            surveys.content.map { survey -> SurveyResponseVo(id = survey.id, title = survey.title) }.toList()
+            surveys.content.map { survey ->
+                SurveyResponseVo(id = survey.id, title = survey.title,
+                    questions = survey.questions.map { question ->
+                    Questions(
+                        title = question.title,
+                        desc = question.desc,
+                        type = question.type,
+                        required = question.required
+                    )
+                })
+            }.toList()
 
         return SurveyListResponseVo(page = pageVo, content = surveyResponseVos)
 

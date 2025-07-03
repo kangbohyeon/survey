@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Table(name = "tb_option")
 class Option(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int? = null,
+    var id: Int = 0,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", nullable = false)

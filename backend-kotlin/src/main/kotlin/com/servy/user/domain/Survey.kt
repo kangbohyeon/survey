@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Table(name = "tb_survey")
 class Survey(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int? = null,
+    val id: Int = 0,
 
     @Column(name = "title", length = 500, nullable = false)
     val title: String,

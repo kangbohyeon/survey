@@ -8,7 +8,7 @@ class Option(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int = 0,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", nullable = false)
     var questionId: Question,
 

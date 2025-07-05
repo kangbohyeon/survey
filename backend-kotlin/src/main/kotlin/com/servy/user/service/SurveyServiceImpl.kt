@@ -1,9 +1,6 @@
 package com.servy.user.service
 
-import com.servy.user.DTO.PageVo
-import com.servy.user.DTO.Questions
-import com.servy.user.DTO.SurveyListResponseVo
-import com.servy.user.DTO.SurveyResponseVo
+import com.servy.user.DTO.*
 import com.servy.user.repository.SurveyRepository
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -31,13 +28,23 @@ class SurveyServiceImpl(
             surveys.content.map { survey ->
                 SurveyResponseVo(id = survey.id, title = survey.title,
                     questions = survey.questions.map { question ->
-                    Questions(
-                        title = question.title,
-                        desc = question.desc,
-                        type = question.type,
-                        required = question.required
-                    )
-                })
+
+                        Questions(
+                            title = question.title,
+                            desc = question.desc,
+                            type = question.type,
+                            required = question.required,
+                            option =
+                            Option(
+                                max = question.option.max,
+                                placeHolder = question.option.placeholder,
+                                items = question.option.items?.map { item ->
+                                    item.item
+                                }?.toList()
+                            )
+                        )
+
+                    })
             }.toList()
 
         return SurveyListResponseVo(page = pageVo, content = surveyResponseVos)

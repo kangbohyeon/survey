@@ -17,5 +17,14 @@ data class Questions(
     val desc: String?,
     val type: String?,
     val required: Boolean,
+    val option: com.servy.user.DTO.Option
 )
+
+data class Option(
+    val max: Int,
+    val placeHolder: String?,
+    val items: List<String>?
+)
+
+
 

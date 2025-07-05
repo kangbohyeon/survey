@@ -25,6 +25,6 @@ class Question(
     @Column(name = "required", nullable = false)
     var required: Boolean = false,
 
-    @OneToMany(mappedBy = "questionId", cascade = [(CascadeType.ALL)])
-    var Options: MutableList<Option> = mutableListOf(),
+    @OneToOne(mappedBy = "questionId", cascade = [(CascadeType.ALL)])
+    var option: Option,
 )

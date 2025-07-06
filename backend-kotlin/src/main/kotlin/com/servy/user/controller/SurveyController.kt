@@ -1,11 +1,13 @@
 package com.servy.user.controller
 
 import com.servy.user.DTO.SurveyListResponseVo
+import com.servy.user.DTO.SurveyResponseVo
 import com.servy.user.service.SurveyService
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -16,5 +18,10 @@ class SurveyController(
     @GetMapping("/surveys")
     fun getSurveys(@PageableDefault(page=0, size=10) pageable: Pageable):ResponseEntity<SurveyListResponseVo> {
         return ResponseEntity.ok().body(surveyService.getSurveys(pageable))
+    }
+
+    @GetMapping("/surveys/{surveyId}")
+    fun getSurvey(@PathVariable("surveyId") surveyId:Int ):ResponseEntity<SurveyResponseVo> {
+        return ResponseEntity.ok().body(surveyService.getSurvey(surveyId))
     }
 }

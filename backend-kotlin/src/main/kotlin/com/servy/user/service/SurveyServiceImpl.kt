@@ -2,6 +2,7 @@ package com.servy.user.service
 
 import com.servy.user.DTO.*
 import com.servy.user.repository.SurveyRepository
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,7 +27,8 @@ class SurveyServiceImpl(
 
         val surveyResponseVos =
             surveys.content.map { survey ->
-                SurveyResponseVo(id = survey.id, title = survey.title,
+                SurveyResponseVo(
+                    id = survey.id, title = survey.title,
                     questions = survey.questions.map { question ->
 
                         Questions(
@@ -49,6 +51,37 @@ class SurveyServiceImpl(
 
         return SurveyListResponseVo(page = pageVo, content = surveyResponseVos)
 
+    }
+
+    @Transactional(readOnly = true)
+    override fun getSurvey(id: Int): SurveyResponseVo {
+
+        val survey = surveyRepository.findById(id).orElseThrow {
+            throw EntityNotFoundException("entity not found")
+        }
+        println(survey)
+        val surveyResponseVo = SurveyResponseVo(
+            id = survey.id,
+            title = survey.title,
+            questions =
+            survey.questions.map { question ->
+                Questions(
+                    title = question.title,
+                    desc = question.desc,
+                    type = question.type,
+                    required = question.required,
+                    option =
+                    Option(
+                        max = question.option.max,
+                        placeHolder = question.option.placeholder,
+                        items = question.option.items?.map { item ->
+                            item.item
+                        }?.toList()
+                    )
+                )
+            }
+        )
+        return surveyResponseVo
     }
 
 }

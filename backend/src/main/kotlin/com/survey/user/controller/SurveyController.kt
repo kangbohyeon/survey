@@ -1,0 +1,35 @@
+package com.survey.user.controller
+
+import com.survey.user.DTO.SurveyListResponseVo
+import com.survey.user.DTO.SurveyRequestDto
+import com.survey.user.DTO.SurveyResponseVo
+import com.survey.user.constants.ExceptionMessage.Companion.INSERT_SUCCESS
+import com.survey.user.service.SurveyService
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+
+@RestController
+@RequestMapping("/api")
+class SurveyController(
+    private val surveyService: SurveyService
+) {
+
+    @GetMapping("/surveys")
+    fun getSurveys(@PageableDefault(page = 0, size = 10) pageable: Pageable): ResponseEntity<SurveyListResponseVo> {
+        return ResponseEntity.ok().body(surveyService.getSurveys(pageable))
+    }
+
+    @GetMapping("/surveys/{surveyId}")
+    fun getSurvey(@PathVariable("surveyId") surveyId: Int): ResponseEntity<SurveyResponseVo> {
+        return ResponseEntity.ok().body(surveyService.getSurvey(surveyId))
+    }
+
+    @PostMapping("/surveys")
+    fun insertSurvey(@RequestBody surveyRequestDto: SurveyRequestDto): ResponseEntity<String> {
+        surveyService.save(surveyRequestDto)
+        return ResponseEntity.status(HttpStatus.CREATED).body(INSERT_SUCCESS)
+    }
+}

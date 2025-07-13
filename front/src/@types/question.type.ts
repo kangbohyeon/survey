@@ -1,5 +1,11 @@
 export type QuestionType = 'text' | 'textarea' | 'select';
 
+export type SurveyState = {
+  id: number;
+  title: string;
+  questions: Question[];
+};
+
 export type Question = {
   title: string;
   desc: string;

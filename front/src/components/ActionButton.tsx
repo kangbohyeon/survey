@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-import questionsLengthState from '../stores/questions/questionsLengthState';
+import questionsLengthState from '../stores/survey/questionsLengthState';
 import useStep from '../hooks/useStep';
 
 import Button from './Button';

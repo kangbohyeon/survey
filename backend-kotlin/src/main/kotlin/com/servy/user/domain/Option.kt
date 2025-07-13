@@ -8,9 +8,9 @@ class Option(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int = 0,
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id", nullable = false)
-    var questionId: Question,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id", nullable = false, referencedColumnName = "id")
+    var question: Question,
 
     @Column(name = "max", nullable = true)
     var max: Int,

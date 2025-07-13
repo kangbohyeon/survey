@@ -16,8 +16,8 @@ class Question(
     @Column(name = "title", nullable = false, length = 500)
     var title: String,
 
-    @Column(name = "desc", nullable = true, length = 5000)
-    var desc: String? = null,
+    @Column(name = "decp", nullable = true, length = 5000)
+    var decp: String? = null,
 
     @Column(name = "type", nullable = false, length = 20)
     var type: String? = null,
@@ -25,6 +25,6 @@ class Question(
     @Column(name = "required", nullable = false)
     var required: Boolean = false,
 
-    @OneToOne(mappedBy = "questionId", cascade = [(CascadeType.ALL)])
-    var option: Option,
+    @OneToMany(mappedBy = "question", cascade = [(CascadeType.ALL)])
+    var option: MutableList<Option> = mutableListOf(),
 )

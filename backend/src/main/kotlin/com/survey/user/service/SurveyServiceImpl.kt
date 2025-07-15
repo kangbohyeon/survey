@@ -48,8 +48,8 @@ class SurveyServiceImpl(
                             option =
                             Option(
                                 max = question.option.first().max,
-                                placeHolder = question.option.first().placeholder,
-                                items = question.option.first().items.map { item ->
+                                placeholder = question.option.first().placeholder,
+                                item = question.option.first().items.map { item ->
                                     item.item
                                 }.toList()
                             )
@@ -81,8 +81,8 @@ class SurveyServiceImpl(
                     option =
                     Option(
                         max = question.option.first().max,
-                        placeHolder = question.option.first().placeholder,
-                        items = question.option.first().items.map { item ->
+                        placeholder = question.option.first().placeholder,
+                        item = question.option.first().items.map { item ->
                             item.item
                         }.toList()
                     )

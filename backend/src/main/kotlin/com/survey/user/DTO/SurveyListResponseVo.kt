@@ -22,8 +22,8 @@ data class Questions(
 
 data class Option(
     val max: Int,
-    val placeHolder: String?,
-    val items: List<String>?
+    val placeholder: String?,
+    val item: List<String>?
 )
 
 

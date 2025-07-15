@@ -5,7 +5,7 @@ type TextInputProps = {
   options: { placeholder: string; item?: string[] };
 };
 
-function TextInput({ answer, setAnswer, options }: TextInputProps) {
+function TextInput({ answer = '', setAnswer, options }: TextInputProps) {
   return (
     <input
       className={`${styles.input}`}

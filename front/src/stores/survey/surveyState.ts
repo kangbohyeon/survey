@@ -1,12 +1,10 @@
-import axios from 'axios';
 import { selector } from 'recoil';
+import getSurvey from '../../services/getSurvey';
 
 const surveyState = selector({
   key: 'surveyState',
   get: async () => {
-    const res = await axios.get(
-      `http://localhost:8080/api/surveys/${window.location.pathname.split('/')[2]}`
-    );
+    const res = await getSurvey(window.location.pathname.split('/')[2]);
 
     return res.data;
   },

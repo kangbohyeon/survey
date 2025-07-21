@@ -10,7 +10,7 @@ import styles from '../assets/css/SurveyPage.module.css';
 
 function QuestionBox() {
   const question = useCurrentQuestion();
-  const [answer, setAnswer] = useCurrentAnswer();
+  const { answer, setAnswer } = useCurrentAnswer();
 
   return (
     <div className={`${styles.questionBoxWrapper}`}>

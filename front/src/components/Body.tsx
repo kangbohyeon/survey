@@ -40,6 +40,8 @@ function Body({ type, answer, setAnswer, options }: BodyProps) {
         />
       </div>
     );
+  } else {
+    return <div className={`${styles.bodyWrapper}`}>error</div>;
   }
 }
 

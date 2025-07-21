@@ -6,7 +6,11 @@ type TextAreaInputProps = {
   options: { placeholder: string; item?: string[] };
 };
 
-function TextAreaInput({ answer, setAnswer, options }: TextAreaInputProps) {
+function TextAreaInput({
+  answer = '',
+  setAnswer,
+  options,
+}: TextAreaInputProps) {
   return (
     <textarea
       className={`${styles.textarea}`}

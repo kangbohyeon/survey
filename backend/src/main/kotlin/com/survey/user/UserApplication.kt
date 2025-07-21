@@ -1,4 +1,4 @@
-package com.servy.user
+package com.survey.user
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

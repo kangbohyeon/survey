@@ -1,16 +1,22 @@
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-import questionsLengthState from '../stores/questions/questionsLengthState';
+import questionsLengthState from '../stores/survey/questionsLengthState';
 import useStep from '../hooks/useStep';
 
 import Button from './Button';
 
 import styles from '../assets/css/SurveyPage.module.css';
+import useSurveyId from '../hooks/useSurveyId';
+import postAnswers from '../services/postAnswers';
+import useAnswers from '../hooks/useAnswers';
 
 function ActionButton() {
   const step = useStep();
+  const surveyId = useSurveyId();
+  const answers = useAnswers();
   const questionsLength = useRecoilValue(questionsLengthState);
+
   const navigate = useNavigate();
 
   const isFirst: boolean = step === 0;
@@ -31,6 +37,7 @@ function ActionButton() {
         <Button
           type='PRIMARY'
           onChange={() => {
+            postAnswers(surveyId, answers);
             navigate('/done');
           }}
         >

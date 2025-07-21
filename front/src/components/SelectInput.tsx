@@ -25,9 +25,6 @@ function Item({ children, onChange }: ItemProps) {
 
 function SelectInput({ answer = [], setAnswer, options }: SelectInputProps) {
   const handleChange = (isChecked: boolean, index: number) => {
-    console.log(
-      `answers : ${answer}, isChecked : ${isChecked}, index : ${index}`
-    );
     if (isChecked) {
       setAnswer([...answer, index]);
     } else {

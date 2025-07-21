@@ -25,13 +25,21 @@ function Body({ type, answer, setAnswer, options }: BodyProps) {
       </div>
     );
   } else if (type === 'text') {
-    <div className={`${styles.bodyWrapper}`}>
-      <TextInput answer={answer} setAnswer={setAnswer} options={options} />
-    </div>;
+    return (
+      <div className={`${styles.bodyWrapper}`}>
+        <TextInput answer={answer} setAnswer={setAnswer} options={options} />
+      </div>
+    );
   } else if (type === 'textarea') {
-    <div className={`${styles.bodyWrapper}`}>
-      <TextAreaInput answer={answer} setAnswer={setAnswer} options={options} />
-    </div>;
+    return (
+      <div className={`${styles.bodyWrapper}`}>
+        <TextAreaInput
+          answer={answer}
+          setAnswer={setAnswer}
+          options={options}
+        />
+      </div>
+    );
   }
 }
 

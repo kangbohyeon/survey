@@ -3,7 +3,7 @@ import styles from '../assets/css/SurveyPage.module.css';
 type TextAreaInputProps = {
   answer: string;
   setAnswer: (newAnswer: string) => void;
-  options: { placeholder: string; item?: string[] };
+  options: { placeholder: string; item?: string[]; max: number };
 };
 
 function TextAreaInput({
@@ -17,6 +17,7 @@ function TextAreaInput({
       value={answer}
       onChange={(e) => setAnswer(e.target.value)}
       placeholder={options.placeholder}
+      {...(options?.max && { maxLength: options?.max })}
     />
   );
 }

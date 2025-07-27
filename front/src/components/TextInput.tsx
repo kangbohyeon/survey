@@ -2,7 +2,7 @@ import styles from '../assets/css/SurveyPage.module.css';
 type TextInputProps = {
   answer: string;
   setAnswer: (newAnswer: string) => void;
-  options: { placeholder: string; item?: string[] };
+  options: { placeholder: string; item?: string[]; max: number };
 };
 
 function TextInput({ answer = '', setAnswer, options }: TextInputProps) {
@@ -15,6 +15,7 @@ function TextInput({ answer = '', setAnswer, options }: TextInputProps) {
         setAnswer(e.target.value);
       }}
       placeholder={options.placeholder}
+      {...(options?.max && { maxLength: options?.max })}
     />
   );
 }

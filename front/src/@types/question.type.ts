@@ -14,5 +14,6 @@ export type Question = {
   option: {
     placeholder: string;
     item?: string[];
+    max: number;
   };
 };

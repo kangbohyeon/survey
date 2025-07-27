@@ -9,6 +9,7 @@ import postAnswers from '../services/postAnswers';
 import useStep from '../hooks/useStep';
 import useSurveyId from '../hooks/useSurveyId';
 import useAnswers from '../hooks/useAnswers';
+import useRequiredOption from '../hooks/useRequiredOption';
 
 import Button from './Button';
 
@@ -25,6 +26,8 @@ function ActionButton() {
 
   const isFirst: boolean = step === 0;
   const isLast: boolean = questionsLength - 1 === step;
+  const isRequired = useRequiredOption();
+  const isBlockToNext = isRequired ? !answers[step]?.length : false;
   return (
     <div className={`${styles.actionButtonWrapper}`}>
       {isFirst || (
@@ -52,7 +55,7 @@ function ActionButton() {
                 alert('에러가 발생했습니다. 다시 시도해주세요');
               });
           }}
-          disabled={isLoading}
+          disabled={isLoading || isBlockToNext}
         >
           {isLoading ? '제출 중입니다...' : '제출'}
         </Button>
@@ -62,6 +65,7 @@ function ActionButton() {
           onChange={() => {
             navigate(`${step + 1}`);
           }}
+          disabled={isBlockToNext}
         >
           다음
         </Button>

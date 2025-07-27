@@ -7,6 +7,8 @@ type ButtonProps = {
   type: ButtonType;
   children: React.ReactNode;
   onChange: () => void;
+  style?: string;
+  disabled?: boolean;
 };
 
 const colorMap = {
@@ -15,7 +17,7 @@ const colorMap = {
   TERTIARY,
 } as const;
 
-function Button({ type, children, onChange }: ButtonProps) {
+function Button({ type, children, onChange, style, disabled }: ButtonProps) {
   const theme = colorMap[type];
 
   const defaultBorder =
@@ -26,10 +28,9 @@ function Button({ type, children, onChange }: ButtonProps) {
     type === 'TERTIARY' ? colorMap.TERTIARY.BUTTON.PRESSED.BORDER : 'none';
   const disabledBorder =
     type === 'TERTIARY' ? colorMap.TERTIARY.BUTTON.DISABLED.BORDER : 'none';
-
   return (
     <button
-      className={styles.button}
+      className={style ? `${style} ${styles.button}` : `${styles.button}`}
       style={
         {
           '--color': theme.BUTTON.DEFAULT.COLOR,
@@ -47,6 +48,7 @@ function Button({ type, children, onChange }: ButtonProps) {
         } as React.CSSProperties
       }
       onClick={onChange}
+      disabled={disabled}
     >
       {children}
     </button>

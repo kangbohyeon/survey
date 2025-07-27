@@ -1,21 +1,25 @@
+import { useState } from 'react';
+
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
 import questionsLengthState from '../stores/survey/questionsLengthState';
+import postAnswers from '../services/postAnswers';
+
 import useStep from '../hooks/useStep';
+import useSurveyId from '../hooks/useSurveyId';
+import useAnswers from '../hooks/useAnswers';
 
 import Button from './Button';
 
 import styles from '../assets/css/SurveyPage.module.css';
-import useSurveyId from '../hooks/useSurveyId';
-import postAnswers from '../services/postAnswers';
-import useAnswers from '../hooks/useAnswers';
 
 function ActionButton() {
   const step = useStep();
   const surveyId = useSurveyId();
   const answers = useAnswers();
   const questionsLength = useRecoilValue(questionsLengthState);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
@@ -37,11 +41,20 @@ function ActionButton() {
         <Button
           type='PRIMARY'
           onChange={() => {
-            postAnswers(surveyId, answers);
-            navigate('/done');
+            setIsLoading(true);
+            postAnswers(surveyId, answers)
+              .then(() => {
+                navigate(`/done/${surveyId}`);
+              })
+              .catch((error) => {
+                console.error(error);
+                setIsLoading(false);
+                alert('에러가 발생했습니다. 다시 시도해주세요');
+              });
           }}
+          disabled={isLoading}
         >
-          제출
+          {isLoading ? '제출 중입니다...' : '제출'}
         </Button>
       ) : (
         <Button

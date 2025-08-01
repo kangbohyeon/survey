@@ -1,0 +1,17 @@
+.wrapper {
+  height: 8px;
+  width: 120px;
+  border-radius: 16px;
+  background: aqua;
+}
+.pending {
+  background: #e3e2e7;
+}
+
+.in_progress {
+  background: #6542f1;
+}
+
+.done {
+  background: #baa9ff;
+}

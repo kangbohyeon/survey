@@ -18,7 +18,7 @@ import styles from '../assets/css/SurveyPage.module.css';
 function ActionButton() {
   const step = useStep();
   const surveyId = useSurveyId();
-  const answers = useAnswers();
+  const [answers, setAnswers] = useAnswers();
   const questionsLength = useRecoilValue(questionsLengthState);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -47,6 +47,7 @@ function ActionButton() {
             setIsLoading(true);
             postAnswers(surveyId, answers)
               .then(() => {
+                setAnswers([]);
                 navigate(`/done/${surveyId}`);
               })
               .catch((error) => {
